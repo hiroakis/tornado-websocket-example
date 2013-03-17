@@ -3,12 +3,17 @@ tornado WebSocket example
 
 Installation
 -------------
-git clone https://github.com/hiroakis/tornado-websocket-example.git
+1. git clone https://github.com/hiroakis/tornado-websocket-example.git
 
-cd tornado-websocket-example
+2. cd tornado-websocket-example
 
-python app.py
+3. python app.py
 
+4. http://YourSite:8888/
+
+(This is my demo page -> http://hiroakis.com:8888/)
+
+5. Send a REST call.(see following example)
 
 REST API examples
 ------------------
