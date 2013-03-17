@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>tornado WebSocket example</title>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+</head>
+<body>
+<h1>tornado WebSocket example</h1>
+<hr>
+WebSocket status : <span id="message"></span>
+<hr>
+<h3>The following table shows values by using WebSocket</h3>
+<div class="container">
+  <div class="row">
+    <div class="span4">
+      <table class="table table-striped table-bordered table-condensed">
+        <tr>
+          <th>No.</th><th>id</th><th>value</th>
+        </tr>
+        <tr id="row1">
+          <td> 1 </td><td> id 1 </td><td id="1"> 0 </td>
+        </tr>
+        <tr id="row2">
+          <td> 2 </td><td> id 2 </td><td id="2"> 0 </td>
+        </tr>
+        <tr id="row3">
+          <td> 3 </td><td> id 3 </td><td id="3"> 0 </td>
+        </tr>
+      </table>
+    </div>
+    <div class="span4">
+      <table class="table table-striped table-bordered table-condensed">
+        <tr>
+          <th>No.</th><th>id</th><th>value</th>
+        </tr>
+        <tr id="row4">
+          <td> 4 </td><td> id 4 </td><td id="4"> 0 </td>
+        </tr>
+        <tr id="row5">
+          <td> 5 </td><td> id 5 </td><td id="5"> 0 </td>
+        </tr>
+        <tr id="row6">
+          <td> 6 </td><td> id 6 </td><td id="6"> 0 </td>
+        </tr>
+      </table>
+    </div>
+    <div class="span4">
+      <table class="table table-striped table-bordered table-condensed">
+        <tr>
+          <th>No.</th><th>id</th><th>value</th>
+        </tr>
+        <tr id="row7">
+          <td> 7 </td><td> id 7 </td><td id="7"> 0 </td>
+        </tr>
+        <tr id="row8">
+          <td> 8 </td><td> id 8 </td><td id="8"> 0 </td>
+        </tr>
+        <tr id="row9">
+          <td> 9 </td><td> id 9 </td><td id="9"> 0 </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<hr>
+<h3>REST API examples</h3>
+<ol>
+<li>Set the "id 1" value to 100 : curl "http://hiroakis.com:8888/api?id=1&amp;value=100"</li>
+<li>Set the "id 1" value to 300( The row No 1 will change to yellow ) : curl "http://hiroakis.com:8888/api?id=1&amp;value=300"</li>
+<li>Set The "id 1" value to 600( The row No 1 will change to red ): curl "http://hiroakis.com:8888/api?id=1&amp;value=600"</li>
+cf) value 201 - 500 : change to yellow, value 501 - : change to red
+</ol>
+<img src="./rest_api_example.png"/>
+<script>
+    var ws = new WebSocket('ws://hiroakis.com:8888/ws');
+    ws.onopen = function(){
+        $('#message').text('WebSocket open');
+    };
+    ws.onmessage = function(ev){
+        $('#message').text('recieved message');
+
+        var json = JSON.parse(ev.data);
+        $('#' + json.id).text(json.value);
+        console.log()
+
+        if(json.value > 500){
+            $('#row' + json.id).attr("class", "error");
+        }
+        else if(json.value > 200){
+            $('#row' + json.id).attr("class", "warning");
+        }
+        else{
+            $('#row' + json.id).attr("class", "");
+        }
+    };
+    ws.onclose = function(ev){
+        $('#message').text('WebSocket has closed');
+    };
+    ws.onerror = function(ev){
+        $('#message').text('error occurred');
+    };
+
+</script>
+</body>
+</html>
