@@ -10,7 +10,6 @@ Installation
 3. python app.py
 
 4. http://YourSite:8888/
-
 (This is my demo page -> http://hiroakis.com:8888/)
 
 5. Send a REST call.(see following example)
