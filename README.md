@@ -7,12 +7,17 @@ Installation
 
 2. cd tornado-websocket-example
 
-3. python app.py
+3. Edit index.html 
+(var ws = new WebSocket('ws://hiroakis.com:8888/ws'); <- change to your url)
 
-4. http://YourSite:8888/
+4. pip install tornado
+
+5. python app.py
+
+6. http://YourSite:8888/
 (This is my demo page -> http://hiroakis.com:8888/)
 
-5. Send a REST call.(see following example)
+7. Send a REST call.(see following example)
 
 REST API examples
 ------------------
