@@ -1,15 +1,13 @@
 from tornado import websocket, web, ioloop
-import tornado
 import json
 
 cl = []
 
-class IndexHandler(tornado.web.RequestHandler):
-
+class IndexHandler(web.RequestHandler):
     def get(self):
         self.render("index.html")
 
-class SocketHandler(tornado.websocket.WebSocketHandler):
+class SocketHandler(websocket.WebSocketHandler):
 
     def open(self):
         if self not in cl:
@@ -19,9 +17,9 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
         if self in cl:
             cl.remove(self)
 
-class ApiHandler(tornado.web.RequestHandler):
+class ApiHandler(web.RequestHandler):
 
-    @tornado.web.asynchronous
+    @web.asynchronous
     def get(self, *args):
         self.finish()
         id = self.get_argument("id")
@@ -31,18 +29,18 @@ class ApiHandler(tornado.web.RequestHandler):
         for c in cl:
             c.write_message(data)
 
-    @tornado.web.asynchronous
+    @web.asynchronous
     def post(self):
         pass
 
-app = tornado.web.Application([
+app = web.Application([
     (r'/', IndexHandler),
     (r'/ws', SocketHandler),
     (r'/api', ApiHandler),
-    (r'/(favicon.ico)', tornado.web.StaticFileHandler, {'path': '../'}),
-    (r'/(rest_api_example.png)', tornado.web.StaticFileHandler, {'path': './'}),
+    (r'/(favicon.ico)', web.StaticFileHandler, {'path': '../'}),
+    (r'/(rest_api_example.png)', web.StaticFileHandler, {'path': './'}),
 ])
 
 if __name__ == '__main__':
     app.listen(8888)
-    tornado.ioloop.IOLoop.instance().start()
+    ioloop.IOLoop.instance().start()
