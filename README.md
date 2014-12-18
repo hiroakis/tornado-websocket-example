@@ -11,7 +11,7 @@ Installation
 
 `var ws = new WebSocket('ws://hiroakis.com:8888/ws'` <- change to your url/localhost
 
-4. `pip install tornado`
+4. `pip install -r requirements.txt`
 
 5. `python app.py`
 
