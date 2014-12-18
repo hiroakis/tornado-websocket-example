@@ -8,8 +8,8 @@ class IndexHandler(web.RequestHandler):
         self.render("index.html")
 
 class SocketHandler(websocket.WebSocketHandler):
-	def check_origin(self, origin):
-		return True
+    def check_origin(self, origin):
+        return True
 
     def open(self):
         if self not in cl:
