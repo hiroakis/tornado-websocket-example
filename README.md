@@ -38,7 +38,7 @@ or
 
 ```
 docker pull hiroakis/tornado-websocket-example
-docker run -d -p 8888:8888 hiroakis/tornade-websocket-example
+docker run -d -p 8888:8888 hiroakis/tornado-websocket-example
 ```
 
 ## REST API examples
