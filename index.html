@@ -84,7 +84,8 @@
     <img src="./rest_api_example.png"/>
   </div>
   <script>
-    var ws = new WebSocket('ws://localhost:8888/ws');
+    var host = window.location.host;
+    var ws = new WebSocket('ws://'+host+'/ws');
     var $message = $('#message');
 
     ws.onopen = function(){
