@@ -8,18 +8,14 @@ This is a websocket example written in python.
 
 2. `cd tornado-websocket-example`
 
-3. Edit index.html
+3. `pip install -r requirements.txt`
 
-`var ws = new WebSocket('ws://hiroakis.com:8888/ws'` <- change to your url/localhost
+4. `python app.py`
 
-4. `pip install -r requirements.txt`
-
-5. `python app.py`
-
-6. http://YourSite:8888/
+5. http://localhost:8888/
 (This is my demo page -> http://hiroakis.com:8888/)
 
-7. Send a REST call:
+6. Send a REST call:
 
 ## Docker
 
